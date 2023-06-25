@@ -78,7 +78,7 @@ CreateThread(function()
         if ShowSpotLights then
             for i = 1, #SpotLightData do
                 local coords = SpotLightData[i].initalCoords
-                DrawSphere(coords.x, coords.y, scoords.z, 0.05, 29, 21, 237, 0.85)
+                DrawSphere(coords.x, coords.y, coords.z, 0.05, 29, 21, 237, 0.85)
             end
         end
     end
