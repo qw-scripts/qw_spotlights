@@ -1,6 +1,23 @@
 local lib = lib
 math = lib.math
 
+local GetPedBoneCoords = GetPedBoneCoords
+local DrawLine = DrawLine
+local DrawSphere = DrawSphere
+local IsControlJustPressed = IsControlJustPressed
+local SetTextScale = SetTextScale
+local SetTextFont = SetTextFont
+local SetTextProportional = SetTextProportional
+local SetTextColour = SetTextColour
+local SetTextEntry = SetTextEntry
+local SetTextCentre = SetTextCentre
+local AddTextComponentString = AddTextComponentString
+local SetDrawOrigin = SetDrawOrigin
+local EndTextCommandDisplayText = EndTextCommandDisplayText
+local DrawRect = DrawRect
+local ClearDrawOrigin = ClearDrawOrigin
+
+
 local initialCast = false
 local secondCast = false
 local initalCoords = nil
@@ -140,7 +157,7 @@ function utils.draw3DText(text, x, y, z)
     SetTextCentre(true)
     AddTextComponentString(text)
     SetDrawOrigin(x,y,z, 0)
-    DrawText(0.0, 0.0)
+    EndTextCommandDisplayText(0.0, 0.0)
     local factor = (string.len(text)) / 370
     DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()

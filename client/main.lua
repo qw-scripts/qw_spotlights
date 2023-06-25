@@ -2,6 +2,13 @@ local utils = require 'client.utils'
 local ShowSpotLights = false
 SpotLightData = {}
 
+local lib = lib
+local GetPedBoneCoords = GetPedBoneCoords
+local DrawLine = DrawLine
+local DrawSphere = DrawSphere
+local IsControlJustPressed = IsControlJustPressed
+
+
 --#region Events
 RegisterNetEvent("qw_spotlights:client:sync", function(data)
     SpotLightData = data
