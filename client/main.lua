@@ -1,5 +1,5 @@
 local utils = require 'client.utils'
-ShowSpotLights = false
+local ShowSpotLights = false
 SpotLightData = {}
 
 --#region Events
@@ -55,22 +55,20 @@ end)
 
 --#region Threads
 CreateThread(function()
-    local wait = 1000
-
     while true do
-        Wait(wait)
-        if #SpotLightData > 0 then
-            wait = 0
-        else
-            wait = 1000
-        end
+        local wait = #SpotLightData > 0 and 0 or 1000
+            
         for i = 1, #SpotLightData do
             local spotlight = SpotLightData[i]
+            local coords = spotlight.initalCoords
+            local direction = spotlight.direction
+            local data = spotlight.data
             local color = spotlight.data.rgb
-            DrawSpotLight(spotlight.initalCoords.x, spotlight.initalCoords.y, spotlight.initalCoords.z,
-                spotlight.direction.x, spotlight.direction.y, spotlight.direction.z, math.floor(color.x), math.floor(color.y), math.floor(color.z), ToFloat(spotlight.data.distance),
-                ToFloat(spotlight.data.brightness), ToFloat(spotlight.data.hardness), ToFloat(spotlight.data.radius), 1.0)
+            DrawSpotLight(coords.x, coords.y, coords.z, direction.x, direction.y, direction.z, math.floor(color.x), math.floor(color.y), math.floor(color.z), ToFloat(data.distance),
+            ToFloat(data.brightness), ToFloat(data.hardness), ToFloat(data.radius), 1.0)
         end
+
+        Wait(wait)
     end
 end)
 
@@ -79,8 +77,8 @@ CreateThread(function()
         Wait(0)
         if ShowSpotLights then
             for i = 1, #SpotLightData do
-                local spotlight = SpotLightData[i]
-                DrawSphere(spotlight.initalCoords.x, spotlight.initalCoords.y, spotlight.initalCoords.z, 0.05, 29, 21, 237, 0.85)
+                local coords = SpotLightData[i].initalCoords
+                DrawSphere(coords.x, coords.y, scoords.z, 0.05, 29, 21, 237, 0.85)
             end
         end
     end
